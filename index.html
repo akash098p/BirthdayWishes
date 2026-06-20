@@ -1,14 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Birthday Animation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎂 Happy Birthday! 🎉</title>
   <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
 <link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
-<!-- partial:index.partial.html -->
+<!-- Rainbow ribbons -->
+<div class="rainbow-ribbon"></div>
+<div class="rainbow-ribbon rainbow-ribbon-bottom"></div>
+
+<!-- Background emojis -->
+<div class="bg-emojis" id="bg-emojis"></div>
+
+<!-- Dark overlay for candle moment -->
+<div id="dark-overlay"></div>
+
+<!-- Stars -->
+<div class="stars" id="stars"></div>
+
+<!-- Confetti canvas -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Fireworks container -->
+<div id="fireworks"></div>
+
+<!-- Title -->
+<div class="title-banner">
+  <h1>Happy Birthday! 🎂</h1>
+</div>
+
+<!-- Main button -->
 <div class="birthday-button">
   <button class="birthday-button__button">
     <svg class="birthday-button__cake" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 76.609 47.643">
@@ -31,7 +56,7 @@
           <rect width="63.5" height="26.458" x="55.374" y="159.984" ry="3.402"></rect>
         </clipPath>
         <clipPath id="frosting-clip">
-          <path d="m 58.311339,159.19367 c -1.915439,0 -3.331523,2.04311 -3.986711,3.74446 -0.778328,2.02111 -0.761971,4.73695 0.529167,6.47582 0.861406,1.16012 2.614079,1.3182 4.033715,1.5875 1.321013,0.25059 2.689143,0 4.033714,0 1.344572,0 2.689143,0 4.033715,0 1.344572,0 2.689143,0 4.033715,0 1.344571,0 2.689143,0 4.033714,0 1.344572,0 2.689143,0 4.033715,0 1.344572,0 2.689143,0 4.033715,0 1.344572,0 2.689143,0 4.033715,0 1.344571,0 2.689143,0 4.033714,0 1.344572,0 2.689143,0 4.033715,0 1.344572,0 2.689143,0 4.033715,0 1.344573,0 2.689143,0 4.033713,0 1.34457,0 2.68915,0 4.03372,0 1.34457,0 2.68914,0 4.03371,0 1.34457,0 2.71271,0.25059 4.03372,0 1.41963,-0.2693 3.17231,-0.42738 4.03371,-1.5875 1.29114,-1.73887 1.3075,-4.45471 0.52917,-6.47582 -0.65519,-1.70135 -2.07128,-3.74446 -3.98672,-3.74446 z" style="fill:#ff0041;fill-opacity:0.53424659;fill-rule:nonzero;stroke:none;stroke-width:0.90433162;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"></path>
+          <path d="m 58.311339,159.19367 c -1.915439,0 -3.331523,2.04311 -3.986711,3.74446 -0.778328,2.02111 -0.761971,4.73695 0.529167,6.47582 0.861406,1.16012 2.614079,1.3182 4.033715,1.5875 1.321013,0.25059 2.689143,0 4.033714,0 1.344572,0 2.689143,0 4.033715,0 1.344572,0 2.689143,0 4.033715,0 1.344571,0 2.689143,0 4.033714,0 1.344572,0 2.689143,0 4.033715,0 1.344572,0 2.689143,0 4.033715,0 1.344572,0 2.689143,0 4.033715,0 1.344571,0 2.689143,0 4.033714,0 1.344572,0 2.689143,0 4.033715,0 1.344572,0 2.689143,0 4.033715,0 1.344573,0 2.689143,0 4.033713,0 1.34457,0 2.68915,0 4.03372,0 1.34457,0 2.68914,0 4.03371,0 1.34457,0 2.71271,0.25059 4.03372,0 1.41963,-0.2693 3.17231,-0.42738 4.03371,-1.5875 1.29114,-1.73887 1.3075,-4.45471 0.52917,-6.47582 -0.65519,-1.70135 -2.07128,-3.74446 -3.98672,-3.74446 z"></path>
         </clipPath>
         <g id="sprinkles" transform="translate(63.93)">
           <rect class="cake__sprinkle" transform="rotate(-44.064)" ry=".567" y="167.592" x="-91.837" height="1.228" width="3.307"></rect>
@@ -85,33 +110,39 @@
             </g>
           </g>
           <g class="cake__mouth">
-            <path class="cake__mouth-opening" d="M83.607 174.436a3.652 3.652 0 003.518 2.674 3.652 3.652 0 003.515-2.674z" stroke-width="1.1801650499999998" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path class="cake__mouth-opening" d="M83.607 174.436a3.652 3.652 0 003.518 2.674 3.652 3.652 0 003.515-2.674z" stroke-width="1.18" stroke-linecap="round" stroke-linejoin="round"></path>
             <path class="cake__tongue" d="M88.836 175.492a3.113 2.329 0 00-2.869 1.425 3.652 3.652 0 001.158.192 3.652 3.652 0 002.899-1.44 3.113 2.329 0 00-1.188-.177z"></path>
           </g>
         </g>
         <g class="cake__face--straining" transform="translate(-48.82 -138.799)">
-          <path d="M100.673 173.886l-5.248-2.073 5.713-1.466M73.574 173.886l5.248-2.073-5.713-1.466" fill="none" stroke="#000" stroke-width="1.01590816" stroke-linecap="round" stroke-linejoin="round"></path>
-          <path d="M85.016 175.773h4.216" fill="none" stroke="#000" stroke-width=".86683468" stroke-linecap="round"></path>
+          <path d="M100.673 173.886l-5.248-2.073 5.713-1.466M73.574 173.886l5.248-2.073-5.713-1.466" fill="none" stroke="#000" stroke-width="1.016" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M85.016 175.773h4.216" fill="none" stroke="#000" stroke-width=".867" stroke-linecap="round"></path>
         </g>
       </g>
       <g class="cake__candles">
-        <g class="cake__candle">
-          <use xlink:href="#candle"></use>
-        </g>
-        <g class="cake__candle">
-          <use xlink:href="#candle" transform="translate(25 0)"></use>
-        </g>
-        <g class="cake__candle">
-          <use xlink:href="#candle" transform="translate(12 0.5)"></use>
-        </g>
+        <g class="cake__candle"><use xlink:href="#candle"></use></g>
+        <g class="cake__candle"><use xlink:href="#candle" transform="translate(25 0)"></use></g>
+        <g class="cake__candle"><use xlink:href="#candle" transform="translate(12 0.5)"></use></g>
       </g>
-    </svg><span class="birthday-button__text" data-splitting="">Happy Birthday!</span>
+    </svg>
+    <span class="birthday-button__text" data-splitting="">Happy Birthday!</span>
   </button>
 </div>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js'></script>
+
+<p class="hint">🎂 Click the cake to celebrate! 🎂</p>
+<div class="click-badge" id="click-badge">🎊 Celebrations: 0</div>
+
+<!-- Message popup -->
+<div class="message-popup" id="msg-popup">
+  <span class="popup-emojis">🥳🎉🎂</span>
+  Make a wish! ✨
+</div>
+
+<!-- Scripts -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js'></script>
 <script src='https://unpkg.com/splitting/dist/splitting.min.js'></script>
-<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin3.min.js'></script><script  src="./script.js"></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin3.min.js'></script>
+<script  src="./script.js"></script>
 
 </body>
 </html>
