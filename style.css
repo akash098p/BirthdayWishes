@@ -1,174 +1,328 @@
-* {
-  box-sizing: border-box;
-}
-:root {
-  --tongue: #c12115;
-  --pupil: #fff;
-  --icing: #f2f2f2;
-  --stroke: #1a1a1a;
-}
-body {
-  --frosting: hsl(var(--frosting-hue, 0), 100%, 55%);
-  --lightness: 50;
-  --flame: 0;
-  --glow-hue: 40;
-  --glow-saturation: 50;
-  --glow-lightness: 35;
-  --glow-alpha: 0.4;
-  --transparency-alpha: 0;
-  --glow: hsla(var(--glow-hue), calc(var(--glow-saturation) * 1%), calc(var(--glow-lightness) * 1%), var(--glow-alpha));
-  --transparent: hsla(0, 0%, 0%, var(--transparency-alpha));
-  display: flex;
-  overflow: hidden;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: hsl(180, 30%, calc(var(--lightness, 50) * 1%));
-}
-.whitespace {
-  width: 7px;
-}
-.birthday-button {
-  position: relative;
-  transform: scale(0.6);
-  cursor: pointer;
-}
-.birthday-button__text {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-family: sans-serif;
-  font-weight: bold;
-}
-.birthday-button__text .char {
-  display: inline-block;
-  color: hsl(var(--hue, 0), calc(var(--char-sat, 0) * 1%), calc(var(--char-light, 0) * 1%));
-}
-.birthday-button:before {
-  content: '';
-  position: absolute;
-  height: 240px;
-  width: 240px;
-  background: radial-gradient(var(--glow), var(--transparent) 30%), radial-gradient(var(--glow), var(--transparent) 50%);
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -70%) scale(calc(var(--flame) * 3));
-  z-index: 2;
-  filter: blur(15px);
-  opacity: var(--flame);
-}
-.birthday-button:after {
-  content: '';
-  height: 30px;
-  width: 400px;
-  filter: blur(15px);
-  position: absolute;
-  background: radial-gradient(var(--glow), var(--transparent) 20%), radial-gradient(var(--glow), var(--transparent));
-  top: 100%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(calc(var(--flame) * 1));
-  opacity: var(--flame);
-}
-.birthday-button__button {
-  width: 240px;
-  height: 100px;
-  position: relative;
-  border: 0;
-  background: var(--icing);
-  border-radius: 14px;
-  cursor: pointer;
-}
-.birthday-button__cake {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 289.5px;
-  display: none;
-}
-.cake__eye-body {
-  fill: var(--stroke);
-}
-.cake__eye-pupil {
-  fill: var(--pupil);
-}
-.cake__tongue {
-  fill: var(--tongue);
-}
-.cake__mouth-opening {
-  fill: var(--stroke);
-  stroke: var(--stroke);
-}
-.cake__sprinkle {
-  --sprinkle: hsl(var(--sprinkle-hue, 0), 100%, 75%);
-  fill: var(--sprinkle);
-}
-.cake__frosting--start {
-  fill: var(--frosting);
-}
-.cake__frosting--duplicate {
-  fill: var(--frosting);
-}
-.candle__flame {
-  opacity: var(--flame, 0);
-}
-.candle__flame-outer {
-  fill: #ff711f;
-}
-.candle__flame-inner {
-  fill: #edca1d;
-}
-.face__stroke {
-  stroke: var(--stroke);
-}
-.cake__candle:nth-of-type(1) {
-  --flame: 0;
-}
-.cake__candle:nth-of-type(2) {
-  --flame: 0;
-}
-.cake__candle:nth-of-type(3) {
-  --flame: 0;
-}
-label {
-  height: 44px;
-  width: 44px;
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  cursor: pointer;
-}
-label > svg {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-label path {
-  fill: #476b6b;
-}
-label svg:nth-of-type(1) {
-  display: none;
-}
-[type='checkbox'] {
-  height: 0;
-  width: 0;
-  position: absolute;
-  top: 0;
-  left: 100%;
-}
-:checked ~ label svg:nth-of-type(1) {
-  display: block;
-}
-:checked ~ label svg:nth-of-type(2) {
-  display: none;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700;900&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tongue: #c12115;
+      --pupil: #fff;
+      --icing: #f2f2f2;
+      --stroke: #1a1a1a;
+    }
+
+    body {
+      --frosting: hsl(var(--frosting-hue, 0), 100%, 55%);
+      --lightness: 8;
+      --flame: 0;
+      --glow-hue: 40;
+      --glow-saturation: 50;
+      --glow-lightness: 35;
+      --glow-alpha: 0.4;
+      --transparency-alpha: 0;
+      --glow: hsla(var(--glow-hue), calc(var(--glow-saturation) * 1%), calc(var(--glow-lightness) * 1%), var(--glow-alpha));
+      --transparent: hsla(0, 0%, 0%, var(--transparency-alpha));
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 60% 40%, #2d1b69 0%, #11092e 55%, #0a0520 100%);
+      background-color: #11092e;
+      font-family: 'Nunito', sans-serif;
+      position: relative;
+    }
+
+    /* ── Dark overlay for candle moment ── */
+    #dark-overlay {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+      transition: none;
+    }
+
+    /* ── Floating background emojis ── */
+    .bg-emojis {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg-emoji {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0;
+      animation: floatUp linear infinite;
+      user-select: none;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.6; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ── Stars twinkling in background ── */
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #fff;
+      animation: twinkle ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.1; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.5); }
+    }
+
+    /* ── Confetti canvas ── */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    /* ── Title banner ── */
+    .title-banner {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: bannerDrop 0.8s cubic-bezier(.34,1.56,.64,1) 0.3s forwards;
+    }
+    @keyframes bannerDrop {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .title-banner h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2rem, 6vw, 4rem);
+      background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #c77dff);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 4s linear infinite;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+      letter-spacing: 2px;
+    }
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+
+    /* ── Birthday button area ── */
+    .birthday-button {
+      position: relative;
+      transform: scale(0.6);
+      cursor: pointer;
+      z-index: 10;
+    }
+    .birthday-button__text {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%; width: 100%;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-family: 'Pacifico', cursive;
+      font-weight: bold;
+    }
+    .birthday-button__text .char {
+      display: inline-block;
+      color: hsl(var(--hue, 0), calc(var(--char-sat, 0) * 1%), calc(var(--char-light, 0) * 1%));
+    }
+    .birthday-button:before {
+      content: '';
+      position: absolute;
+      height: 240px; width: 240px;
+      background: radial-gradient(var(--glow), var(--transparent) 30%), radial-gradient(var(--glow), var(--transparent) 50%);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -70%) scale(calc(var(--flame) * 3));
+      z-index: 2;
+      filter: blur(15px);
+      opacity: var(--flame);
+    }
+    .birthday-button:after {
+      content: '';
+      height: 30px; width: 400px;
+      filter: blur(15px);
+      position: absolute;
+      background: radial-gradient(var(--glow), var(--transparent) 20%), radial-gradient(var(--glow), var(--transparent));
+      top: 100%; left: 50%;
+      transform: translate(-50%, -50%) scale(calc(var(--flame) * 1));
+      opacity: var(--flame);
+    }
+    .birthday-button__button {
+      width: 240px;
+      height: 100px;
+      position: relative;
+      border: 0;
+      background: var(--icing);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: box-shadow 0.3s;
+    }
+    .birthday-button__button:hover {
+      box-shadow: 0 0 30px rgba(255,150,50,0.4), 0 8px 30px rgba(0,0,0,0.15);
+    }
+    .birthday-button__cake {
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translate(-50%, 0);
+      width: 289.5px;
+      display: none;
+    }
+
+    /* ── Cake SVG styles ── */
+    .cake__eye-body   { fill: var(--stroke); }
+    .cake__eye-pupil  { fill: var(--pupil); }
+    .cake__tongue     { fill: var(--tongue); }
+    .cake__mouth-opening { fill: var(--stroke); stroke: var(--stroke); }
+    .cake__sprinkle {
+      --sprinkle: hsl(var(--sprinkle-hue, 0), 100%, 75%);
+      fill: var(--sprinkle);
+    }
+    .cake__frosting--start    { fill: var(--frosting); }
+    .cake__frosting--duplicate { fill: var(--frosting); }
+    .candle__flame            { opacity: var(--flame, 0); }
+    .candle__flame-outer      { fill: #ff711f; }
+    .candle__flame-inner      { fill: #edca1d; }
+    .cake__candle:nth-of-type(1) { --flame: 0; }
+    .cake__candle:nth-of-type(2) { --flame: 0; }
+    .cake__candle:nth-of-type(3) { --flame: 0; }
+
+    /* ── Hint text ── */
+    .hint {
+      position: relative;
+      z-index: 10;
+      margin-top: 2.5rem;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 1px;
+      animation: pulse 2s ease-in-out infinite;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.05); }
+    }
+
+    /* ── Message popup ── */
+    .message-popup {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: linear-gradient(135deg, #fff0f5, #fff9e6);
+      border-radius: 24px;
+      padding: 2rem 3rem;
+      z-index: 200;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      font-family: 'Pacifico', cursive;
+      font-size: 1.5rem;
+      color: #e83e8c;
+      border: 3px solid #ffd6e7;
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(.34,1.56,.64,1);
+      pointer-events: none;
+    }
+    .message-popup.show {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .message-popup .popup-emojis {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── Sparkle trail (mouse) ── */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      font-size: 1.2rem;
+      z-index: 999;
+      animation: sparkleAnim 0.8s ease-out forwards;
+    }
+    @keyframes sparkleAnim {
+      0%   { transform: scale(1) translateY(0); opacity: 1; }
+      100% { transform: scale(0) translateY(-60px); opacity: 0; }
+    }
+
+    /* ── Rainbow ribbon at top ── */
+    .rainbow-ribbon {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #c77dff, #ff6b6b);
+      background-size: 200%;
+      animation: ribbonShift 3s linear infinite;
+      z-index: 1000;
+    }
+    @keyframes ribbonShift {
+      to { background-position: 200% 0; }
+    }
+
+    /* ── Bottom ribbon ── */
+    .rainbow-ribbon-bottom {
+      top: auto;
+      bottom: 0;
+      animation-direction: reverse;
+    }
+
+    /* ── Click counter badge ── */
+    .click-badge {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 999px;
+      padding: 0.4rem 1.2rem;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      z-index: 50;
+      letter-spacing: 1px;
+    }
+
+    /* ── Firework sparks ── */
+    .firework {
+      position: fixed;
+      pointer-events: none;
+      z-index: 150;
+    }
+    .fw-spark {
+      position: absolute;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      animation: fwSpark linear forwards;
+    }
+    @keyframes fwSpark {
+      0%   { transform: translate(0,0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+    }
+
+    /* ── Whitespace util (used by Splitting) ── */
+    .whitespace { width: 7px; }
